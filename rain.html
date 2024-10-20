@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Happy Women's Day</title>
+    <style>
+        body {
+            background-color: #fce4ec;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            overflow: hidden;
+        }
+
+        .cloud {
+            position: relative;
+            background-color: #f48fb1;
+            width: 500px;
+            height: 150px;
+            border-radius: 100px;
+            box-shadow: inset -15px -15px 30px rgba(255, 255, 255, 0.8);
+        }
+
+        .cloud:before, .cloud:after {
+            content: '';
+            position: absolute;
+            background-color: #f48fb1;
+            width: 300px;
+            height: 200px;
+            border-radius: 50%;
+        }
+
+        .cloud:before {
+            top: -100px;
+            left: 50px;
+        }
+
+        .cloud:after {
+            top: -50px;
+            right: 50px;
+        }
+
+        .text {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            font-size: 30px;
+            color: white;
+            font-weight: bold;
+            z-index: 100;
+            text-align: center;
+        }
+
+        .rain {
+            position: absolute;
+            top: 160px;
+            width: 100%;
+            height: 300px;
+            overflow: hidden;
+        }
+
+        .heart {
+            position: absolute;
+            width: 25px;
+            height: 25px;
+            background-color: transparent;
+            border-radius: 50%;
+            animation: fall 3s infinite;
+        }
+
+        .heart:before {
+            content: '♥';
+            position: absolute;
+            top: 0;
+            left: 0;
+            font-size: 18px;
+            color: #f06292;
+        }
+
+        @keyframes fall {
+            0% {
+                top: -20px;
+                opacity: 1;
+            }
+            100% {
+                top: 300px;
+                opacity: 0;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="cloud">
+        <div class="text">Happy Women's Day</div>
+        <div class="rain" id="rain"></div>
+    </div>
+
+    <script>
+        function createHeart() {
+            const rainContainer = document.getElementById('rain');
+            const heart = document.createElement('div');
+            heart.classList.add('heart');
+            heart.style.left = Math.random() * 100 + '%';  
+            heart.style.animationDuration = (Math.random() * 1 + 1.5) + 's';  
+            rainContainer.appendChild(heart);
+
+            setTimeout(() => {
+                heart.remove();
+            }, 2000);
+        }
+
+        setInterval(createHeart, 2);  
+    </script>
+</body>
+</html>
